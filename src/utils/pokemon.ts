@@ -1,19 +1,13 @@
-export const getAllPokemon = async (url: string) => {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        resolve(data);
-      });
-  });
-}
+import { PokemonListResponse, PokemonData } from "../types/type";
 
-export const getPokemon = (url: string) => {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        resolve(data);
-      });
-  });
-}
+export const getAllPokemon = async (url: string): Promise<PokemonListResponse> => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data as PokemonListResponse;
+};
+
+export const getPokemon = async (url: string): Promise<PokemonData> => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data as PokemonData;
+};
